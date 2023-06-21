@@ -13,7 +13,7 @@ inputValidator()                //Starts function that checks for valid input
 function startInput(){                                        
     const prompt = require('prompt-sync')();
     let numberGrade = parseInt(prompt('What is your grade?'));  //Converts input from string to int
-    console.log(`So you got ${numberGrade}`);
+    //console.log(`So you got ${numberGrade}`);
     return numberGrade
 }
 
@@ -23,13 +23,13 @@ function startInput(){
 */
 
 function inputValidator(){                             
-    if (numberGrade>100){
+    while (numberGrade>100){
         console.log("invalid mark, please reenter")
         startInput()
     }
     
     if(numberGrade<=100){
-        console.log("valid mark found")
+        //console.log("valid mark found")
         let letterGrade=studentGrader(numberGrade)
         console.log(letterGrade)
     
@@ -42,11 +42,11 @@ function inputValidator(){
 */
 
 function studentGrader(input){
-    console.log(input)
+    //console.log(input)
         if(input > 79){
             return "A"
         }
-        if(input > 60&& input<79){
+        if(input > 60&& input<80){
             return "B"
 
         }
@@ -60,3 +60,6 @@ function studentGrader(input){
             return "E"
         }
       }
+
+
+//Find out how to continuously loop a function until it returns true

@@ -40,7 +40,7 @@ function getLicenseStatus(input){
         console.log("Points:","OK") 
     }
 
-    if(input>12){                                  //Checks if the inputed points are greater than 12
+    if(input>=12){                                   //Checks if the inputed points are greater than 12
         console.log("Points:", input)                        
         console.log("License suspended")
     }
@@ -49,3 +49,4 @@ function getLicenseStatus(input){
         console.log("Points:", getUserPointNumber)  //Checks if the inputed points are between 0 and 12
     }
 }    
+
