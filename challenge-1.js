@@ -2,19 +2,27 @@
     Student Grade Generator
 */
 
-const numberGrade=startInput()
-inputValidator()
+const numberGrade=startInput()  //runs startInput() and stores the result
+inputValidator()                //Starts function that checks for valid input
 
-function startInput(){
+
+/* 
+    Takes in a user input and converts it to an integer
+*/
+
+function startInput(){                                        
     const prompt = require('prompt-sync')();
-    let numberGrade = parseInt(prompt('What is your grade?'));
+    let numberGrade = parseInt(prompt('What is your grade?'));  //Converts input from string to int
     console.log(`So you got ${numberGrade}`);
     return numberGrade
 }
 
 
+/* 
+    Checks if input is valid i.e below 100. Returns error message if not
+*/
 
-function inputValidator(){
+function inputValidator(){                             
     if (numberGrade>100){
         console.log("invalid mark, please reenter")
         startInput()
@@ -28,6 +36,10 @@ function inputValidator(){
     }
     
 }
+
+/* 
+    Takes in a number input and returns an appropriate grade
+*/
 
 function studentGrader(input){
     console.log(input)
