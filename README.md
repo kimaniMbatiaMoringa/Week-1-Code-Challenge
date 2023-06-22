@@ -12,7 +12,8 @@ Challenge 3: Net Salary Calculator
 
 # Project Setup guide
 
-1. Open each of the challenges in VSCode and start them using Node.js via the  console command: 
+1. Open the folder of the project
+1. Launch each of the challenges using Node.js via the  console command: 
 
 node [challenge-name] e.g "node challenge-1.js"
 
