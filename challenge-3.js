@@ -1,25 +1,22 @@
-/* 
+/************************** 
     Net Salary Calculator
-*/
+
+    Net salary calculator process:
+    // 0. Take in Gross salary
+    // 1. Deduct NHIF contribution 
+    // 2. Deduct NSSF contribution
+    // 3. Deduct Tax amount
+    // 4. Return Net Salary
+
+***************************/
 
 
-let grossUserSalary=startInput()                                           //Gets a gross salary and stores it
-let salaryAfterDeductions =salaryAfterDeductionsCalc(grossUserSalary)     //Gets a gross salary and calls "salaryAfterdeductions()" to deduct NSSF and NHIF contributions
-let salaryAfterTax =salaryAfterTaxCalc(salaryAfterDeductions)
-console.log("Your Net Salary is " + salaryAfterTax) 
+let grossUserSalary=startInput()                                          //Gets a gross salary from an input and stores it
 
-/* 
-    Takes in a user salary input and returns a gross salary after deductions
-*/
+let salaryAfterDeductions =salaryAfterDeductionsCalc(grossUserSalary)     //Store a gross salary after dedductions by calling "salaryAfterdeductions()"
+let salaryAfterTax =salaryAfterTaxCalc(salaryAfterDeductions)             //Stores a net salary by calling salaryAfterTaxCalc()
+console.log("Your Net Salary is " + salaryAfterTax)                       //Prints out a user's net salary   
 
-function salaryAfterDeductionsCalc(input){
-    let nhifDeduction =nhifDeductionCalc(input);
-    let nssfDeduction = nssfDeductionCalc(input);
-    let salaryBeforeTax = input - (nhifDeduction + nssfDeduction)
-    console.log("NHIF Deduction is " + nhifDeduction )
-    console.log("NSSF Deduction is " + nssfDeduction )
-    return salaryBeforeTax
-}
 
 /* 
     Takes in a user input and converts it to an integer
@@ -30,8 +27,24 @@ function startInput(){
     return salary
 }
 
+
 /* 
-    Calculates from a salary input what NHIF deduction applies
+    Takes in a input and returns a gross salary after deductions
+*/
+
+function salaryAfterDeductionsCalc(input){
+    let nhifDeduction =nhifDeductionCalc(input);
+    console.log("NHIF Deduction is " + nhifDeduction )
+    let nssfDeduction = nssfDeductionCalc(input);
+    console.log("NSSF Deduction is " + nssfDeduction )
+    let salaryBeforeTax = input - (nhifDeduction + nssfDeduction)
+    return salaryBeforeTax
+}
+
+
+/* 
+    NHIF Calculator which determines what NHIF deduction applies
+    and returns the deducted amount
 */
 
 function nhifDeductionCalc(input){
@@ -103,21 +116,42 @@ function nhifDeductionCalc(input){
         return deduction = 1700
         //return input-(input*taxRate)
     }
-
-
-
 }
+
+
+/* 
+    NSSF Calculator which determines what NHIF deduction applies
+    and returns the deducted amount
+*/
 
 function nssfDeductionCalc(input){
     if(input>=18000){
-        deduction = input *0.16
+        deduction = input *0.08;
         if (deduction > 2160){
             return 2160
         }
-        return deduction
+        else if(deduction < 2160){
+            return deduction
+        }
     }
 
+    else if(input<6001){
+        deduction = input * 0.08;
+        if(deduction > 720){
+            return 720
+        }
+        else if(deduction <720){
+            return deduction
+        }
+    }  
+   
+
 }
+
+/* 
+    Paye Calculator which determines which tax bracket an input falls into
+    and decducts the taxable pay. Returns  salary after tax
+*/
 
 function salaryAfterTaxCalc(input){
     let taxCut;
@@ -139,13 +173,3 @@ function salaryAfterTaxCalc(input){
     console.log("Tax deduction is " + taxCut) 
     return input-taxCut
 }
-
-//netSalary()
-
-
-//Net salary calculator process
-// 
-// 1. Deduct NHIF contribution by salary (Gross Salary)
-// 2. Deduct NSSF rate (Gross Salary)
-// 3. salaryAfterDeductions(Taxable pay)
-// 4. 

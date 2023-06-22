@@ -60,6 +60,3 @@ function studentGrader(input){
             return "E"
         }
       }
-
-
-//Find out how to continuously loop a function until it returns true
